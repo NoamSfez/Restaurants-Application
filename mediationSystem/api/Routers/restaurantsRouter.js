@@ -1,51 +1,56 @@
-import restaurantsController from "../Controllers/restaurantsController.js";
+import RestaurantsController from "../Controllers/RestaurantsController.js";
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 
 const Router = require("@koa/router");
-const restaurantsRouter = new Router();
-restaurantsRouter.prefix("/api/mediation/v1");
+const RestaurantsRouter = new Router();
+RestaurantsRouter.prefix("/api/mediation/v1");
 
 /*
 description: get all the restaurants
-path: api/v1/restaurants/
+path: api/mediation/v1/restaurants/
 */
-restaurantsRouter.get("/restaurants", restaurantsController.getAllRestaurants);
+RestaurantsRouter.get("/restaurants", RestaurantsController.getAllRestaurants);
 
 /*
-description: get a restaurant by ID and all of his reviews
-method: GET
-path: api/v1/restaurant/123
+description: get one restaurant by his ID and all of his reviews
+path: api/mediation/v1/restaurant/123
 */
-// restaurantsRouter.get(
-//   "restaurant/:id",
-//   restaurantsController.GetRestaurantById
-// );
-/*
-description: get all restaurants cuisines categories
-method: GET
-path: api/v1/restaurants/cuisines/
-*/
-// restaurantsRouter.get(
-//   "restaurants/cuisines",
-//   restaurantsController.GetRestaurantsCuisines
-// );
+RestaurantsRouter.get(
+  "/restaurant/:id",
+  RestaurantsController.getRestaurantById
+);
 
 /*
-description: get all restaurants cuisines categories
-method: GET
-path: api/v1/restaurants/cuisines/
+description: get list of all cuisines
+path: api/mediation/v1/restaurants/cuisines
 */
-// restaurantsRouter.get(
-//   "restaurants/cuisines",
-//   restaurantsController.GetRestaurantsCuisines
-// );
+RestaurantsRouter.get(
+  "/restaurants/cuisines",
+  RestaurantsController.getRestaurantsCuisines
+);
 
-// //point de depart c'est apres api/v1/restaurants
-// router
-//   .route("/review")
-//   .post(ReviewsController.apiPostReview)
-//   .put(ReviewsController.apiUpdateReview)
-//   .delete(ReviewsController.apiDeleteReview);
+/*
+description: get all the restaurants filter by name/zipcode/cuisine/perPage/numOfPage
+path: api/mediation/v1/restaurants/filterby?cuisine=Afghan
+*/
+RestaurantsRouter.get(
+  "/restaurants/filterby",
+  RestaurantsController.getRestaurantsFilterBy
+);
 
-export default restaurantsRouter;
+/*
+description: create a new review on a restaurant
+path: api/mediation/v1/restaurant/5eb3d668b31de5d588f42950/review
+body:{
+	"text":"Super",
+	"user_id":"342722238",
+	"name":"Noam"
+}
+*/
+RestaurantsRouter.post(
+  "/restaurant/:restaurant_id/review",
+  RestaurantsController.createReview
+);
+
+export default RestaurantsRouter;

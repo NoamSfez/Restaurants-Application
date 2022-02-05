@@ -1,4 +1,4 @@
-import custommersController from "../Controllers/custommersController.js";
+import custommersController from "../Controllers/CustommersController.js";
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 
