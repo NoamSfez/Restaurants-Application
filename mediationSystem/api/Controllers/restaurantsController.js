@@ -40,4 +40,26 @@ export default class RestaurantsController {
     );
     ctx.response.body = rep.data;
   }
+  static async modifyReview(ctx, next) {
+    let body = { ...ctx.params, ...ctx.request.body };
+    let rep = await instance.put(
+      "http://localhost:8000/api/v1/restaurants/review",
+      body
+    );
+    ctx.response.body = rep.data;
+  }
+
+  static async deleteReview(ctx, next) {
+    /**
+     *  Unlike axios.post() and axios.put(),the 2nd param to axios.delete() is the Axios options, not the request body.
+     *  To send a request body with a DELETE request, you should use the data option.
+     */
+    let body = ctx.request.body;
+    let review_id = ctx.params.review_id;
+    let rep = await instance.delete(
+      `http://localhost:8000/api/v1/restaurants/review?id=${review_id}`,
+      { data: body } // have to be specific in this format and not just body like other mthods
+    );
+    ctx.response.body = rep.data;
+  }
 }

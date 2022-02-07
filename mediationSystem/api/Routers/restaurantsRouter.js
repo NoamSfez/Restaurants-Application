@@ -7,13 +7,13 @@ const RestaurantsRouter = new Router();
 RestaurantsRouter.prefix("/api/mediation/v1");
 
 /*
-description: get all the restaurants
+description: GET all the restaurants
 path: api/mediation/v1/restaurants/
 */
 RestaurantsRouter.get("/restaurants", RestaurantsController.getAllRestaurants);
 
 /*
-description: get one restaurant by his ID and all of his reviews
+description: GET one restaurant by his ID and all of his reviews
 path: api/mediation/v1/restaurant/123
 */
 RestaurantsRouter.get(
@@ -22,7 +22,7 @@ RestaurantsRouter.get(
 );
 
 /*
-description: get list of all cuisines
+description: GET list of all cuisines
 path: api/mediation/v1/restaurants/cuisines
 */
 RestaurantsRouter.get(
@@ -31,7 +31,7 @@ RestaurantsRouter.get(
 );
 
 /*
-description: get all the restaurants filter by name/zipcode/cuisine/perPage/numOfPage
+description: GET all the restaurants filter by name/zipcode/cuisine/perPage/numOfPage
 path: api/mediation/v1/restaurants/filterby?cuisine=Afghan
 */
 RestaurantsRouter.get(
@@ -40,7 +40,7 @@ RestaurantsRouter.get(
 );
 
 /*
-description: create a new review on a restaurant
+description: POST a new review on a restaurant
 path: api/mediation/v1/restaurant/5eb3d668b31de5d588f42950/review
 body:{
 	"text":"Super",
@@ -51,6 +51,30 @@ body:{
 RestaurantsRouter.post(
   "/restaurant/:restaurant_id/review",
   RestaurantsController.createReview
+);
+
+/*
+description: UPDATE a review on a restaurant if the user_id correspond to the review creator id
+path: api/mediation/v1/restaurant/review/61fef91bbc9b1488b061d370
+body:{
+	"text":"Super",
+	"user_id":"342722238",
+}
+*/
+RestaurantsRouter.put(
+  "/restaurant/review/:review_id",
+  RestaurantsController.modifyReview
+);
+/*
+description: DELETE a review on a restaurant if the user_id correspond to the review creator id
+path: api/mediation/v1/restaurant/review/61fef91bbc9b1488b061d370
+body:{
+	"user_id":"342722238",
+}
+*/
+RestaurantsRouter.delete(
+  "/restaurant/review/:review_id",
+  RestaurantsController.deleteReview
 );
 
 export default RestaurantsRouter;
