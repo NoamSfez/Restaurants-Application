@@ -1,4 +1,4 @@
-import CustommersRouter from "./api/Routers/CustommersRouter.js";
+import CustomersRouter from "./api/Routers/CustomersRouter.js";
 import RestaurantsRouter from "./api/Routers/RestaurantsRouter.js";
 
 /**
@@ -34,7 +34,7 @@ app.use(async (ctx, next) => {
   }
 });
 
-app.use(CustommersRouter.routes(), CustommersRouter.allowedMethods());
+app.use(CustomersRouter.routes(), CustomersRouter.allowedMethods());
 app.use(RestaurantsRouter.routes(), RestaurantsRouter.allowedMethods());
 
 export default app;

@@ -7,13 +7,15 @@ const RestaurantsRouter = new Router();
 RestaurantsRouter.prefix("/api/mediation/v1");
 
 /*
-description: GET all the restaurants
+method: GET
+description: Get all the restaurants
 path: api/mediation/v1/restaurants/
 */
 RestaurantsRouter.get("/restaurants", RestaurantsController.getAllRestaurants);
 
 /*
-description: GET one restaurant by his ID and all of his reviews
+method: GET
+description: Get one restaurant by his ID and all of his reviews
 path: api/mediation/v1/restaurant/123
 */
 RestaurantsRouter.get(
@@ -22,7 +24,8 @@ RestaurantsRouter.get(
 );
 
 /*
-description: GET list of all cuisines
+method: GET
+description: Get list of all cuisines and count
 path: api/mediation/v1/restaurants/cuisines
 */
 RestaurantsRouter.get(
@@ -31,7 +34,8 @@ RestaurantsRouter.get(
 );
 
 /*
-description: GET all the restaurants filter by name/zipcode/cuisine/perPage/numOfPage
+method: GET
+description: Get all the restaurants filter by name/zipcode/cuisine/perPage/numOfPage
 path: api/mediation/v1/restaurants/filterby?cuisine=Afghan
 */
 RestaurantsRouter.get(
@@ -40,7 +44,8 @@ RestaurantsRouter.get(
 );
 
 /*
-description: POST a new review on a restaurant
+method: POST
+description: Create a new review on a restaurant
 path: api/mediation/v1/restaurant/5eb3d668b31de5d588f42950/review
 body:{
 	"text":"Super",
@@ -54,7 +59,8 @@ RestaurantsRouter.post(
 );
 
 /*
-description: UPDATE a review on a restaurant if the user_id correspond to the review creator id
+method: PUT
+description: Modify a review on a restaurant if the user_id correspond to the review creator id
 path: api/mediation/v1/restaurant/review/61fef91bbc9b1488b061d370
 body:{
 	"text":"Super",
@@ -66,7 +72,8 @@ RestaurantsRouter.put(
   RestaurantsController.modifyReview
 );
 /*
-description: DELETE a review on a restaurant if the user_id correspond to the review creator id
+method: DELETE
+description: Delete a review on a restaurant if the user_id correspond to the review creator id
 path: api/mediation/v1/restaurant/review/61fef91bbc9b1488b061d370
 body:{
 	"user_id":"342722238",
