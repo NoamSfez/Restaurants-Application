@@ -42,4 +42,12 @@ export default class CustomersController {
     );
     ctx.response.body = { response: rep.data };
   }
+  // static async deleteAllCustomers(ctx, next) {
+  //   const body = ctx.request.body;
+  //   const rep = await instance.delete(
+  //     `http://localhost:8080/api/employees`,
+  //     body
+  //   );
+  //   ctx.response.body = { response: rep.data };
+  // }
 }
