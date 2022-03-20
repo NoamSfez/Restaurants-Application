@@ -14,27 +14,23 @@ JavaScript ES6, NodeJS, npm, express.js, koa.js, Axios, Java, Spring Boot, Maven
 
 # Launch Servers
 
-CRM system run on port 8080 (using MySQL on port 3306.)
-PMI system run on port 8000.
-Mediation system run on port 6000.
-Portal system run on port 3000.
+CRM system run on port 8080 (using MySQL on port 3306).
 
 ```bash
 $ cd CRM_System
 $ mvn -Dmaven.test.skip=true spring-boot:run
 ```
 
+PIM system run on port 8000.
+
 ```bash
 $ cd PIM_System
 $ nodemon index.js
 ```
 
-```bash
-$ cd Mediation_System
-$ npm start
-```
+Mediation system run on port 6000.
 
 ```bash
-$ cd Portal_System
+$ cd Mediation_System
 $ npm start
 ```
